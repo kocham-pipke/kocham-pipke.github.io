@@ -483,24 +483,39 @@
             }
         });
 
-        document.getElementById('emailForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Zapobiega domyślnej akcji formularza
+            document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            const text = document.getElementById('textInput').value;
+            const message = document.getElementById('textInput').value;
 
-            fetch('/send-email', {
+            // Dane do wysłania e-maila
+            const emailData = {
+                apikey: 'E140DEBE4D008CD30AC29330F3CE703834AD33CCA04A09058C5A211F67283404572759C24CFBEB334706E1849FCEC6E0', // Tutaj wstaw swój klucz API Elastic Email
+                subject: 'Nowa wiadomość ze strony',
+                from: 'blazejek2k19@gmail.com', // Z góry ustalony adres e-mail nadawcy
+                to: 'b.kalkowski.2904@gmail.com', // Z góry ustalony adres e-mail odbiorcy
+                bodyText: `Wiadomość: ${textInput}`,
+            };
+
+            // Wysyłanie danych do Elastic Email przez API
+            fetch('https://api.elasticemail.com/v2/email/send', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: text }),
+                body: JSON.stringify(emailData),
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message);
+                if (data.success) {
+                    alert('Wiadomość wysłana pomyślnie!');
+                } else {
+                    alert('Wystąpił błąd podczas wysyłania wiadomości.');
+                }
             })
             .catch(error => {
                 console.error('Błąd:', error);
+                alert('Wystąpił błąd podczas wysyłania wiadomości.');
             });
         });
     </script>
