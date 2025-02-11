@@ -491,12 +491,14 @@
 
     // Dane do wysyłania e-maila
     const emailData = {
-        apikey: 'YOUR_ELASTIC_EMAIL_API_KEY', // Tutaj wstaw swój klucz API Elastic Email
+        apikey: 'BA85FE51BC1288C945F68A91061F25A2983F20BA0AC412578BBB69BA72E58B3D4A49816E79295DABEF5B1AFA1C62B67E', // Tutaj wstaw swój klucz API Elastic Email
         subject: 'Nowa wiadomość ze strony',
         from: 'blazejek2k19@gmail.com', // Z góry ustalony adres e-mail nadawcy
         to: 'b.kalkowski.2904@gmail.com', // Z góry ustalony adres e-mail odbiorcy
         bodyText: `Wiadomość: ${message}`, // Użyj wartości z inputa
     };
+
+    console.log('Wysyłane dane:', emailData); // Dodaj to, aby zobaczyć dane przed wysłaniem
 
     // Wysyłanie danych do Elastic Email przez API
     fetch('https://api.elasticemail.com/v2/email/send', {
@@ -506,8 +508,12 @@
         },
         body: JSON.stringify(emailData),
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log('Odpowiedź z API:', response); // Dodaj to, aby zobaczyć pełną odpowiedź
+        return response.json();
+    })
     .then(data => {
+        console.log('Dane z API:', data); // Dodaj to, aby zobaczyć przetworzone dane
         if (data.success) {
             alert('Wiadomość wysłana pomyślnie!');
         } else {
@@ -515,7 +521,7 @@
         }
     })
     .catch(error => {
-        console.error('Błąd:', error);
+        console.error('Błąd:', error); // Dodaj to, aby zobaczyć błędy
         alert('Wystąpił błąd podczas wysyłania wiadomości.');
     });
 });
