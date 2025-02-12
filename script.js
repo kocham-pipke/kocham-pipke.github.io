@@ -13,6 +13,8 @@ const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
 const pointsInput = document.getElementById('pointsInput');
+const pow = document.getElementById('pow')
+const point = document.getElementById('point')
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -33,6 +35,7 @@ const aggressiveTexts = [
 
 function nextStep(answer) {
     if (currentStep === 0) {
+        point.style.display = 'inline-block';
         pointsDisplay.style.display = 'inline-block';
         handleFirstStep(answer);
     } else if (currentStep === 1) {
@@ -171,13 +174,10 @@ function checkAnswer(questionIndex, selectedAnswerText) {
     }
     pointsDisplay.textContent = `Punkty: ${points}/10`;
 
-    // Zaktualizuj ukryte pole z punktami
     pointsInput.value = points;
-
-    // Ukryj feedback po 1 sekundzie
     setTimeout(() => {
         pointsFeedback.textContent = '';
-    }, 1000);
+    }, 3000);
 }
 
 function createAnswers(options, actions, questionIndex) {
@@ -207,7 +207,10 @@ function showGif() {
     gifcontainer.style.display = 'flex';
     ost.style.display = 'block';
     wiad.style.display = 'block';
+
     inputContainer.style.display = 'flex';
+    inputContainer.style.flexDirection = 'row';
+    pow.style.display = "inline-block";
     backButton.style.display = 'inline-block';
     muteButton.style.display = 'inline-block';
 
@@ -217,6 +220,7 @@ function showGif() {
     catSound.volume = 0.008;
     catSound.play();
 }
+
 
 backButton.addEventListener('click', function() {
     location.reload();
@@ -252,6 +256,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     .then(response => {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
+            alert("Wiadomość email została wysłana.")
         } else {
             alert("Błąd wysyłania wiadomości.");
         }
