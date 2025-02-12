@@ -70,7 +70,11 @@
             position: relative;
             z-index: 1;
             background-image: url('kotki.jpg');
+            background-size: cover;
             background-repeat: no-repeat;
+            background-position: center;
+            transform: rotate(90deg);
+            filter: blur(10px);
             padding: 20px;
             margin: 0 auto;
             max-width: 800px;
@@ -83,6 +87,7 @@
         }
 
         .answers {
+            font-color: #ffffff;
             margin-top: 10vh;
             display: flex;
             justify-content: center;
@@ -101,6 +106,7 @@
             right: 13vw;
         }
         #question {
+            font-color: #ffffff;
             margin-top: -3vh;
             user-select: none;
             position: relative;
