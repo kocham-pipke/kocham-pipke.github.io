@@ -152,12 +152,15 @@ function checkAnswer(questionIndex, selectedAnswerText) {
     ];
 
     const pointsFeedback = document.getElementById('pointsFeedback');
-    if (correctAnswersText[questionIndex] === selectedAnswerText) {
-        points++;
-        pointsFeedback.textContent = '+1';
-    } else {
-        pointsFeedback.textContent = '+0';
+    if (pointsFeedback) { // Sprawdź, czy element istnieje
+        if (correctAnswersText[questionIndex] === selectedAnswerText) {
+            points++;
+            pointsFeedback.textContent = '+1';
+        } else {
+            pointsFeedback.textContent = '+0';
+        }
     }
+
     pointsDisplay.textContent = `Punkty: ${points}/10`;
 
     // Zaktualizuj ukryte pole z punktami
@@ -165,7 +168,9 @@ function checkAnswer(questionIndex, selectedAnswerText) {
 
     // Ukryj feedback po 1 sekundzie
     setTimeout(() => {
-        pointsFeedback.textContent = '';
+        if (pointsFeedback) {
+            pointsFeedback.textContent = '';
+        }
     }, 1000);
 }
 
