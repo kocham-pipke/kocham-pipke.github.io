@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <button id="backButton" class="fixed-button left">Powrót</button>
-        <div id="pointsDisplay" class="fixed-button right">Punkty: 0/10</div>
+        <div id="pointsDisplay" class="fixed-button right">Punkty: 0/10 <span id="pointsFeedback"></span></div>
 
         <div class="question-container">
             <h1 id="question">Cześć! Jaką opcję wybierasz?</h1>
@@ -32,18 +32,17 @@
         <p id="wiad" style="display: none;">Wiadomość:</p>
 
         <div class="input-container" id="inputContainer">
-            <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
-                 <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
-                <input type="hidden" name="_captcha" value="false">
-                 <button id="sendButton' type="submit">Wyślij</button>
-            </form>
-        </div>
+    <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
+        <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
+        <input type="hidden" name="points" id="pointsInput" value="0">
+        <input type="hidden" name="_captcha" value="false">
+        <button id="sendButton" type="submit">Wyślij</button>
+    </form>
+</div>
     </div>
 
-    <!-- Importowanie JavaScript z osobnego pliku -->
     <script src="script.js"></script>
 
-    <!-- CSS -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -82,6 +81,13 @@
             border-radius: 50px;
         }
 
+        #pointsFeedback {
+        color: green;
+        font-weight: bold;
+        margin-left: 5px;
+        transition: opacity 0.5s;
+        }
+        
         #question {
             margin-top: -3vh;
             user-select: none;
