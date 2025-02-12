@@ -265,7 +265,7 @@
         <p id="wiad" style="display: none;">Wiadomość:</p>
 
         <div class="input-container" id="inputContainer">
-            <form action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
+            <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
                  <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
                 <input type="hidden" name="_captcha" value="false">
                  <button id="sendButton' type="submit">Wyślij</button>
@@ -483,6 +483,25 @@
                 muteButton.textContent = 'Wznów';
             }
         });
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Zatrzymuje domyślną akcję formularza
+
+    let formData = new FormData(this);
+
+    fetch(this.action, {
+        method: this.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "https://blaz3j12.github.io";
+        } else {
+            alert("Błąd wysyłania wiadomości.");
+        }
+    })
+    .catch(error => alert("Błąd: " + error));
+});
     </script>
 </body>
 </html>
