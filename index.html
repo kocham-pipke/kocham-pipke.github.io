@@ -484,56 +484,62 @@
         });
 
 document.getElementById('emailForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+            event.preventDefault();
 
-    const textInput = document.getElementById('textInput');
-    const message = textInput.value;
+            const textInput = document.getElementById('textInput');
+            const message = textInput.value;
 
-    // Pobierz dane z pliku config.json
-    fetch('ścieżka/do/config.json')
-        .then(response => response.json())
-        .then(config => {
-            const emailData = {
-                apikey: config.ELASTIC_EMAIL_API_KEY,
-                subject: 'Nowa wiadomość ze strony',
-                from: config.EMAIL_FROM,
-                to: config.EMAIL_TO,
-                bodyText: `Wiadomość: ${message}`,
-            };
+            // Pobierz dane z pliku config.json (hostowanego na GitHub)
+            fetch('https://raw.githubusercontent.com/blaz3j12/blaz3j12.github.io/main/config.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Błąd HTTP: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(config => {
+                    // Utwórz obiekt z danymi do wysłania
+                    const emailData = {
+                        apikey: config.ELASTIC_EMAIL_API_KEY,
+                        subject: 'Nowa wiadomość ze strony',
+                        from: config.EMAIL_FROM,
+                        to: config.EMAIL_TO,
+                        bodyText: `Wiadomość: ${message}`,
+                    };
 
-            console.log('Wysyłane dane:', emailData);
+                    console.log('Wysyłane dane:', emailData);
 
-            // Wysyłanie danych do API Elastic Email
-            fetch('https://cors-anywhere.herokuapp.com/https://api.elasticemail.com/v2/email/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(emailData),
-            })
-            .then(response => {
-                console.log('Odpowiedź z API (raw):', response);
-                return response.json();
-            })
-            .then(data => {
-                console.log('Dane z API:', data);
-                if (data.success) {
-                    alert('Wiadomość wysłana pomyślnie!');
-                } else {
-                    alert('Wystąpił błąd podczas wysyłania wiadomości.');
-                    console.error('Błąd z API:', data);
-                }
-            })
-            .catch(error => {
-                console.error('Błąd:', error);
-                alert('Wystąpił błąd podczas wysyłania wiadomości.');
-            });
-        })
-        .catch(error => {
-            console.error('Błąd podczas pobierania config.json:', error);
-            alert('Wystąpił błąd podczas ładowania konfiguracji.');
+                    // Wysyłanie danych do API Elastic Email
+                    fetch('https://cors-anywhere.herokuapp.com/https://api.elasticemail.com/v2/email/send', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(emailData),
+                    })
+                    .then(response => {
+                        console.log('Odpowiedź z API (raw):', response);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Dane z API:', data);
+                        if (data.success) {
+                            alert('Wiadomość wysłana pomyślnie!');
+                        } else {
+                            alert('Wystąpił błąd podczas wysyłania wiadomości.');
+                            console.error('Błąd z API:', data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Błąd:', error);
+                        alert('Wystąpił błąd podczas wysyłania wiadomości.');
+                    });
+                })
+                .catch(error => {
+                    console.error('Błąd podczas pobierania config.json:', error);
+                    alert('Wystąpił błąd podczas ładowania konfiguracji.');
+                });
         });
-});
     </script>
 </body>
 </html>
