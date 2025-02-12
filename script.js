@@ -126,7 +126,7 @@ function handleTenthStep(answer) {
     createAnswers(['Tak', 'Nie'], [showGif, shrinkNoButton], 9);
 }
 
-function shrinkNoButton() {
+function shrinkNoButton(event) {
     noButtonScale *= 0.9;
     event.target.style.transform = `scale(${noButtonScale})`;
 
@@ -138,6 +138,7 @@ function shrinkNoButton() {
 
     if (aggressionLevel < aggressiveTexts.length - 1) {
         aggressionLevel++;
+        questionElement.textContent = aggressiveTexts[aggressionLevel];
     }
 }
 
