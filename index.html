@@ -484,44 +484,46 @@
         });
 
             document.getElementById('emailForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Zatrzymaj domyślne zachowanie formularza
 
-    const textInput = document.getElementById('textInput'); // Pobierz element input
-    const message = textInput.value; // Pobierz wartość z inputa
+    // Pobierz wartość z pola input
+    const textInput = document.getElementById('textInput');
+    const message = textInput.value;
 
     // Dane do wysyłania e-maila
     const emailData = {
-        apikey: 'BA85FE51BC1288C945F68A91061F25A2983F20BA0AC412578BBB69BA72E58B3D4A49816E79295DABEF5B1AFA1C62B67E', // Tutaj wstaw swój klucz API Elastic Email
-        subject: 'Nowa wiadomość ze strony',
-        from: 'blazejek2k19@gmail.com', // Z góry ustalony adres e-mail nadawcy
-        to: 'b.kalkowski.2904@gmail.com', // Z góry ustalony adres e-mail odbiorcy
-        bodyText: `Wiadomość: ${message}`, // Użyj wartości z inputa
+        apikey: 'YOUR_ELASTIC_EMAIL_API_KEY', // Tutaj wstaw swój klucz API Elastic Email
+        subject: 'Nowa wiadomość ze strony', // Temat e-maila
+        from: 'blazejek2k19@gmail.com', // Adres nadawcy (musi być zweryfikowany w Elastic Email)
+        to: 'b.kalkowski.2904@gmail.com', // Adres odbiorcy
+        bodyText: `Wiadomość: ${message}`, // Treść e-maila
     };
 
-    console.log('Wysyłane dane:', emailData); // Dodaj to, aby zobaczyć dane przed wysłaniem
+    console.log('Wysyłane dane:', emailData); // Logowanie danych przed wysłaniem
 
     // Wysyłanie danych do Elastic Email przez API
     fetch('https://api.elasticemail.com/v2/email/send', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json', // Określenie formatu danych
         },
-        body: JSON.stringify(emailData),
+        body: JSON.stringify(emailData), // Przekształcenie danych na format JSON
     })
     .then(response => {
-        console.log('Odpowiedź z API:', response); // Dodaj to, aby zobaczyć pełną odpowiedź
-        return response.json();
+        console.log('Odpowiedź z API (raw):', response); // Logowanie surowej odpowiedzi
+        return response.json(); // Przetworzenie odpowiedzi na format JSON
     })
     .then(data => {
-        console.log('Dane z API:', data); // Dodaj to, aby zobaczyć przetworzone dane
+        console.log('Dane z API:', data); // Logowanie przetworzonych danych
         if (data.success) {
             alert('Wiadomość wysłana pomyślnie!');
         } else {
             alert('Wystąpił błąd podczas wysyłania wiadomości.');
+            console.error('Błąd z API:', data); // Logowanie błędu z API
         }
     })
     .catch(error => {
-        console.error('Błąd:', error); // Dodaj to, aby zobaczyć błędy
+        console.error('Błąd:', error); // Logowanie błędów sieciowych lub innych
         alert('Wystąpił błąd podczas wysyłania wiadomości.');
     });
 });
