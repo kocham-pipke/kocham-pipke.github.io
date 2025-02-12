@@ -151,16 +151,19 @@ function checkAnswer(questionIndex, selectedAnswerText) {
         'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
     ];
 
-    const pointsFeedback = document.getElementById('pointsFeedback');
-    if (pointsFeedback) { // Sprawdź, czy element istnieje
-        if (correctAnswersText[questionIndex] === selectedAnswerText) {
-            points++;
-            pointsFeedback.textContent = '+1';
-        } else {
-            pointsFeedback.textContent = '+0';
-        }
-    }
+    // Usuń ewentualne dodatkowe spacje i zmień na małe litery
+    const correctAnswer = correctAnswersText[questionIndex].trim().toLowerCase();
+    const userAnswer = selectedAnswerText.trim().toLowerCase();
 
+    const pointsFeedback = document.getElementById('pointsFeedback');
+    if (correctAnswer === userAnswer) {
+        points++;
+        console.log(`Correct! Points: ${points}`);
+        pointsFeedback.textContent = '+1';
+    } else {
+        console.log(`Incorrect! Points: ${points}`);
+        pointsFeedback.textContent = '+0';
+    }
     pointsDisplay.textContent = `Punkty: ${points}/10`;
 
     // Zaktualizuj ukryte pole z punktami
@@ -168,9 +171,7 @@ function checkAnswer(questionIndex, selectedAnswerText) {
 
     // Ukryj feedback po 1 sekundzie
     setTimeout(() => {
-        if (pointsFeedback) {
-            pointsFeedback.textContent = '';
-        }
+        pointsFeedback.textContent = '';
     }, 1000);
 }
 
