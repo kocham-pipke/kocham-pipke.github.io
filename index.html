@@ -496,24 +496,23 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
         
         const config = await response.json();
         
-        // Utwórz obiekt z danymi do wysłania
-        const emailData = new URLSearchParams({
-            apikey: config.ELASTIC_EMAIL_API_KEY,
-            subject: 'Nowa wiadomość ze strony',
-            from: config.EMAIL_FROM,
-            to: config.EMAIL_TO,
-            bodyText: `Wiadomość: ${message}`,
-        });
-
-        console.log('Wysyłane dane:', emailData.toString());
-
-        // Wysyłanie danych do API Elastic Email
-        const emailResponse = await fetch('https://api.elasticemail.com/v2/email/send', {
+        console.log("Używany klucz API:", config.ELASTIC_EMAIL_API_KEY);
+        
+        // Wysyłanie danych do nowej wersji API Elastic Email
+        const emailResponse = await fetch('https://api.elasticemail.com/v4/emails', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'X-ElasticEmail-ApiKey': config.ELASTIC_EMAIL_API_KEY,
+                'Content-Type': 'application/json'
             },
-            body: emailData,
+            body: JSON.stringify({
+                Recipients: [{ Email: config.EMAIL_TO }],
+                Content: {
+                    From: config.EMAIL_FROM,
+                    Subject: "Nowa wiadomość ze strony",
+                    Body: [{ ContentType: "PlainText", Content: `Wiadomość: ${message}` }]
+                }
+            })
         });
 
         const data = await emailResponse.json();
