@@ -502,7 +502,7 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
         const emailData = new URLSearchParams();
         emailData.append("apikey", config.ELASTIC_EMAIL_API_KEY);
         emailData.append("from", config.EMAIL_FROM);
-        emailData.append("to", config.EMAIL_TO);
+        emailData.append("to", "blazejek2k19@gmail.com");
         emailData.append("subject", "Nowa wiadomość ze strony");
         emailData.append("bodyText", `Wiadomość: ${message}`);
         
