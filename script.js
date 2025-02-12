@@ -127,17 +127,21 @@ function handleTenthStep(answer) {
 }
 
 function shrinkNoButton(event) {
+    console.log("shrinkNoButton called");
     noButtonScale *= 0.9;
+    console.log("noButtonScale:", noButtonScale);
     event.target.style.transform = `scale(${noButtonScale})`;
 
     yesButtonScale *= 1.3;
     const yesButton = document.querySelector('.answer-yes');
     if (yesButton) {
+        console.log("yesButtonScale:", yesButtonScale);
         yesButton.style.transform = `scale(${yesButtonScale})`;
     }
 
     if (aggressionLevel < aggressiveTexts.length - 1) {
         aggressionLevel++;
+        console.log("aggressionLevel:", aggressionLevel);
         questionElement.textContent = aggressiveTexts[aggressionLevel];
     }
 }
