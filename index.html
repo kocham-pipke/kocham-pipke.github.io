@@ -498,21 +498,21 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
         
         console.log("Używany klucz API:", config.ELASTIC_EMAIL_API_KEY);
         
-        // Wysyłanie danych do nowej wersji API Elastic Email
+        // Przygotowanie danych do API v2 (format x-www-form-urlencoded)
+        const emailData = new URLSearchParams();
+        emailData.append("apikey", config.ELASTIC_EMAIL_API_KEY);
+        emailData.append("from", config.EMAIL_FROM);
+        emailData.append("to", config.EMAIL_TO);
+        emailData.append("subject", "Nowa wiadomość ze strony");
+        emailData.append("bodyText", `Wiadomość: ${message}`);
+        
+        // Wysyłanie danych do API Elastic Email v2
         const emailResponse = await fetch('https://api.elasticemail.com/v2/email/send', {
             method: 'POST',
             headers: {
-                'X-ElasticEmail-ApiKey': config.ELASTIC_EMAIL_API_KEY,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify({
-                Recipients: [{ Email: config.EMAIL_TO }],
-                Content: {
-                    From: config.EMAIL_FROM,
-                    Subject: "Nowa wiadomość ze strony",
-                    Body: [{ ContentType: "PlainText", Content: `Wiadomość: ${message}` }]
-                }
-            })
+            body: emailData
         });
 
         const data = await emailResponse.json();
