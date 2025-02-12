@@ -8,10 +8,13 @@
 </head>
 <body>
     <div class="container">
+        <div id="pow">
         <button id="backButton" class="fixed-button left">Powrót</button>
+        </div>
+        <div id="point">
         <div id="pointsDisplay" class="fixed-button right">Punkty: 0/10</div>
         <div id="pointsFeedback"></div>
-
+        </div>
 
         <div class="question-container">
             <h1 id="question">Cześć! Jaką opcję wybierasz?</h1>
@@ -48,37 +51,46 @@
     <style>
         body {
     font-family: Arial, sans-serif;
-    background-color: #454545;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    background-image: url('kotki.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
-    flex-direction: column;
-    text-align: center;
-    margin: 0;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: -1;
 }
 
 .container {
-    position: relative; /* Umożliwia pozycjonowanie pseudo-elementu */
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
-    max-width: 800px;
-    padding: 20px;
-    margin: 0 auto;
+    width: 80%;
+    max-width: 1000px;
+    padding: 40px;
     border-radius: 10px;
-    overflow: hidden; /* Zapobiega wychodzeniu pseudo-elementu poza granice */
-    z-index: 1; /* Ustawia treść nad pseudo-elementem */
-    background-color: transparent; /* Przezroczyste tło kontenera */
-    border: 2px solid white; 
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
+    border: 2px solid white;
 }
-
 
 .container::before {
     content: '';
@@ -87,119 +99,111 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('kotki.jpg'); /* Ścieżka do obrazka */
-    background-size: cover; /* Obrazek pokrywa całą dostępną przestrzeń */
-    background-position: center; /* Wyśrodkowanie obrazka */
-    background-repeat: no-repeat; /* Zapobiega powtarzaniu obrazka */
-    filter: blur(10px); /* Rozmycie tła */
-    z-index: -1; /* Umieszcza tło za treścią */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: -1;
 }
 
-        h1 {
-            font-size: 4vw;
-        }
+h1 {
+    font-size: 4vw;
+    color: white;
+}
 
-        .answers {
-            font-color: #ffffff;
-            margin-top: 10vh;
-            display: flex;
-            justify-content: center;
-            gap: 2vw;
-            border-radius: 50px;
-        }
+.answers {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    border-radius: 50px;
+}
 
-        #pointsFeedback {
-            color: green;
-            font-weight: bold;
-            display: inline-block;
-            margin-right: 10px; 
-            font-size: 1.5vw;
-            position: fixed;
-            top: 10px;
-            right: 13vw;
-        }
-        #question {
-            font-color: #ffffff;
-            margin-top: -3vh;
-            user-select: none;
-            position: relative;
-            top: 10%;
-            left: 0%;
-            margin-bottom: 10vh;
-        }
+#question {
+    text-align: center;
+    color: white;
+    margin-top: -3vh;
+    user-select: none;
+    position: relative;
+    top: 10%;
+    left: 0%;
+    margin-bottom: 10vh;
+}
 
-        #ost {
-            display: none;
-            font-size: 3vw;
-            color: #333;
-            font-weight: bold;
-            user-select: none;
-            margin-bottom: 20px;
-        }
+#ost {
+    display: none;
+    font-size: 3vw;
+    color: white;
+    font-weight: bold;
+    user-select: none;
+    margin-bottom: 20px;
+}
 
-        .answer {
-            border-radius: 10px;
-            padding: 2vw 5vw;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 2vw;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+.answer {
+    border-radius: 10px;
+    padding: 2vw 5vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 2.5vw;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-        .answer:hover {
-            background-color: #45a049;
-        }
+.answer:hover {
+    background-color: #45a049;
+}
 
-        .answer:active {
-            background-color: #3e8e41;
-        }
+.answer:active {
+    background-color: #3e8e41;
+}
 
-        .answer-yes {
-            position: absolute;
-            left: 35%;
-            transition: transform 0.2s;
-        }
+.answer-yes {
+    position: fixed;
+    padding: 1.5vw 5vw;
+    top: 50%;
+    left: 35%;
+    transition: transform 0.2s;
+}
 
-        .answer-yes.clicked {
-            transform: scale(1.5);
-        }
+.answer-yes.clicked {
+    transform: scale(1.5);
+}
 
-        .answer-no {
-            background-color: #cf0000;
-            position: absolute;
-            left: 53%;
-            transition: transform 0.2s;
-        }
+.answer-no {
+    background-color: #cf0000;
+    position: fixed;
+    padding: 1.5vw 5vw;
+    top: 50%;
+    left: 53%;
+    transition: transform 0.2s;
+}
 
-        .answer-no:hover {
-            background-color: #960000;
-        }
+.answer-no:hover {
+    background-color: #960000;
+}
 
-        .answer-no.clicked {
-            background-color: #ff2b2b;
-            transform: scale(0.8);
-        }
+.answer-no.clicked {
+    background-color: #ff2b2b;
+    transform: scale(0.8);
+}
 
-        .gif-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
-        }
+.gif-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
 
-        .gif {
-            width: auto;
-            height: 50vh;
-            max-width: 100%;
-            max-height: 50vh;
-        }
+.gif {
+    width: auto;
+    height: 50vh;
+    max-width: 100%;
+    max-height: 50vh;
+}
 
-        #muteButton {
-            display: none;
+#muteButton {
+    display: none;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -213,106 +217,207 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-        #muteButton:hover {
-            background-color: #d32f2f;
-        }
+#muteButton:hover {
+    background-color: #d32f2f;
+}
 
-        #muteButton:active {
-            background-color: #c62828;
-            transform: scale(0.98);
-        }
+#muteButton:active {
+    background-color: #c62828;
+    transform: scale(0.98);
+}
 
-        #wiad {
-            display: none;
-            margin-bottom: 1vh;
-            font-size: 4vh;
-        }
+#wiad {
+    display: none;
+    margin-bottom: 1vh;
+    font-size: 4vh;
+    color: white;
+}
 
-        .input-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 20px;
-        }
+.input-container {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
 
-        .input-container input {
-            text-align: left;
-            display: inline-block;
-            height: 3vw;
-            font-size: 2vw;
-            padding: 1.5vw;
-            width: 60%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 0;
-        }
+.input-container input {
+    text-align: left;
+    display: inline-block;
+    height: 3vw;
+    font-size: 2vw;
+    padding: 0.75vw 1.5vw;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
 
-        #sendButton {
-            display: inline-block;
-            padding: 1.5vw 2vw;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 2vw;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            margin-left: 10px;
-            height: 2vw;
-        }
+#sendButton {
+    display: inline-block;
+    padding: 0.5vw 1.5vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.8vw;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    height: 3vw;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+}
 
-        #sendButton:hover {
-            background-color: #45a049;
-        }
+#sendButton:hover {
+    background-color: #45a049;
+}
 
-        #sendButton:active {
-            background-color: #3e8e41;
-        }
+#sendButton:active {
+    background-color: #3e8e41;
+}
 
-        .fixed-button.left {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-        }
+.fixed-button.left {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
 
-        .fixed-button.right {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
+.fixed-button.right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
 
-        #backButton {
-            display: none;
-            font-family: Arial;
-            font-weight: bold;
-            padding: 7px 15px;
-            background-color: #2b2b2b;
-            color: white;
-            border-radius: 5px;
-            border: black 5px;
-            font-size: 1vw;
-            cursor: pointer;
-            z-index: 1000;
-        }
+#pow {
+    display: none;
+    font-family: Arial;
+    height: 38px;
+    font-weight: bold;
+    padding: 10px 60px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    z-index: 1000;
+    position: fixed;
+    top: -2px;
+    left: -3px;
+    background-color: transparent;
+    overflow: hidden;
+    border: 2px solid white;
+}
 
-        #backButton:hover {
-            background-color: #3b3b3b;
-        }
+#pow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(140, 140, 140, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+    border-radius: 5px;
+}
 
-        #backButton:active {
-            background-color: #696969;
-        }
+#backButton {
+    display: none;
+    background-color: rgb(108, 108, 108);
+    font-family: Arial;
+    font-weight: bold;
+    padding: 7px 15px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    z-index: 1000;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+    border: 2px solid rgb(78, 78, 78);
+}
 
-        #pointsDisplay {
-            display: none;
-            font-family: Arial;
-            font-size: 1.5vw;
-            color: #333;
-            font-weight: bold;
-            z-index: 1000;
-            user-select: none;
-        }
+#backButton:hover {
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+#backButton:active {
+    background-color: rgba(40, 40, 40, 0.5);
+}
+
+#point {
+    display: none;
+    font-family: Arial;
+    font-size: 1.5vw;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    user-select: none;
+    position: fixed;
+    height: 45px;
+    top: -2px;
+    right: -3px;
+    padding: 10px 130px;
+    background-color: transparent;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+#point::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(179, 179, 179, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+    border-radius: 5px;
+}
+
+#pointsDisplay {
+    display: none;
+    font-family: Arial;
+    font-size: 1.5vw;
+    text-shadow: 0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    z-index: 1000;
+    user-select: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 7px 15px;
+    /* background-color: rgb(87, 87, 87); */
+    border-radius: 5px;
+    overflow: hidden;
+    /* border: 2px solid rgb(65, 65, 65); */
+}
+
+#pointsFeedback {
+    color: green;
+    text-shadow: 0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255);
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 1.5vw;
+    position: fixed;
+    top: 10px;
+    right: 11vw;
+    padding: 7px 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+}
     </style>
 </body>
 </html>
