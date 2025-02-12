@@ -47,146 +47,158 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #454545;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            flex-direction: column;
-            text-align: center;
-            margin: 0;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #454545;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-            background-image: url('kotki.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            transform: rotate(90deg);
-            filter: blur(10px);
-            padding: 20px;
-            margin: 0 auto;
-            max-width: 800px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.container {
+    position: relative; /* Umożliwia pozycjonowanie pseudo-elementu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden; /* Zapobiega wychodzeniu pseudo-elementu poza granice */
+    z-index: 1; /* Ustawia treść nad pseudo-elementem */
+}
 
-        h1 {
-            font-size: 4vw;
-        }
+/* Pseudo-element dla rozmytego tła */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('kotki.jpg'); /* Ścieżka do obrazka */
+    background-size: cover; /* Obrazek pokrywa całą dostępną przestrzeń */
+    background-position: center; /* Wyśrodkowanie obrazka */
+    background-repeat: no-repeat; /* Zapobiega powtarzaniu obrazka */
+    filter: blur(10px); /* Rozmycie tła */
+    z-index: -1; /* Umieszcza tło za treścią */
+}
 
-        .answers {
-            font-color: #ffffff;
-            margin-top: 10vh;
-            display: flex;
-            justify-content: center;
-            gap: 2vw;
-            border-radius: 50px;
-        }
+/* Reszta stylów pozostaje bez zmian */
+h1 {
+    font-size: 4vw;
+}
 
-        #pointsFeedback {
-            color: green;
-            font-weight: bold;
-            display: inline-block;
-            margin-right: 10px; 
-            font-size: 1.5vw;
-            position: fixed;
-            top: 10px;
-            right: 13vw;
-        }
-        #question {
-            font-color: #ffffff;
-            margin-top: -3vh;
-            user-select: none;
-            position: relative;
-            top: 10%;
-            left: 0%;
-            margin-bottom: 10vh;
-        }
+.answers {
+    color: #ffffff;
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    border-radius: 50px;
+}
 
-        #ost {
-            display: none;
-            font-size: 3vw;
-            color: #333;
-            font-weight: bold;
-            user-select: none;
-            margin-bottom: 20px;
-        }
+#pointsFeedback {
+    color: green;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 1.5vw;
+    position: fixed;
+    top: 10px;
+    right: 13vw;
+}
 
-        .answer {
-            border-radius: 10px;
-            padding: 2vw 5vw;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 2vw;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+#question {
+    color: #ffffff;
+    margin-top: -3vh;
+    user-select: none;
+    position: relative;
+    top: 10%;
+    left: 0%;
+    margin-bottom: 10vh;
+}
 
-        .answer:hover {
-            background-color: #45a049;
-        }
+#ost {
+    display: none;
+    font-size: 3vw;
+    color: #333;
+    font-weight: bold;
+    user-select: none;
+    margin-bottom: 20px;
+}
 
-        .answer:active {
-            background-color: #3e8e41;
-        }
+.answer {
+    border-radius: 10px;
+    padding: 2vw 5vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 2vw;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-        .answer-yes {
-            position: absolute;
-            left: 35%;
-            transition: transform 0.2s;
-        }
+.answer:hover {
+    background-color: #45a049;
+}
 
-        .answer-yes.clicked {
-            transform: scale(1.5);
-        }
+.answer:active {
+    background-color: #3e8e41;
+}
 
-        .answer-no {
-            background-color: #cf0000;
-            position: absolute;
-            left: 53%;
-            transition: transform 0.2s;
-        }
+.answer-yes {
+    position: absolute;
+    left: 35%;
+    transition: transform 0.2s;
+}
 
-        .answer-no:hover {
-            background-color: #960000;
-        }
+.answer-yes.clicked {
+    transform: scale(1.5);
+}
 
-        .answer-no.clicked {
-            background-color: #ff2b2b;
-            transform: scale(0.8);
-        }
+.answer-no {
+    background-color: #cf0000;
+    position: absolute;
+    left: 53%;
+    transition: transform 0.2s;
+}
 
-        .gif-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
-        }
+.answer-no:hover {
+    background-color: #960000;
+}
 
-        .gif {
-            width: auto;
-            height: 50vh;
-            max-width: 100%;
-            max-height: 50vh;
-        }
+.answer-no.clicked {
+    background-color: #ff2b2b;
+    transform: scale(0.8);
+}
 
-        #muteButton {
-            display: none;
+.gif-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.gif {
+    width: auto;
+    height: 50vh;
+    max-width: 100%;
+    max-height: 50vh;
+}
+
+#muteButton {
+    display: none;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -200,106 +212,106 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-        #muteButton:hover {
-            background-color: #d32f2f;
-        }
+#muteButton:hover {
+    background-color: #d32f2f;
+}
 
-        #muteButton:active {
-            background-color: #c62828;
-            transform: scale(0.98);
-        }
+#muteButton:active {
+    background-color: #c62828;
+    transform: scale(0.98);
+}
 
-        #wiad {
-            display: none;
-            margin-bottom: 1vh;
-            font-size: 4vh;
-        }
+#wiad {
+    display: none;
+    margin-bottom: 1vh;
+    font-size: 4vh;
+}
 
-        .input-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 20px;
-        }
+.input-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
 
-        .input-container input {
-            text-align: left;
-            display: inline-block;
-            height: 3vw;
-            font-size: 2vw;
-            padding: 1.5vw;
-            width: 60%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-bottom: 0;
-        }
+.input-container input {
+    text-align: left;
+    display: inline-block;
+    height: 3vw;
+    font-size: 2vw;
+    padding: 1.5vw;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+}
 
-        #sendButton {
-            display: inline-block;
-            padding: 1.5vw 2vw;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 2vw;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            margin-left: 10px;
-            height: 2vw;
-        }
+#sendButton {
+    display: inline-block;
+    padding: 1.5vw 2vw;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 2vw;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px;
+    height: 2vw;
+}
 
-        #sendButton:hover {
-            background-color: #45a049;
-        }
+#sendButton:hover {
+    background-color: #45a049;
+}
 
-        #sendButton:active {
-            background-color: #3e8e41;
-        }
+#sendButton:active {
+    background-color: #3e8e41;
+}
 
-        .fixed-button.left {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-        }
+.fixed-button.left {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
 
-        .fixed-button.right {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-        }
+.fixed-button.right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
 
-        #backButton {
-            display: none;
-            font-family: Arial;
-            font-weight: bold;
-            padding: 7px 15px;
-            background-color: #2b2b2b;
-            color: white;
-            border-radius: 5px;
-            border: black 5px;
-            font-size: 1vw;
-            cursor: pointer;
-            z-index: 1000;
-        }
+#backButton {
+    display: none;
+    font-family: Arial;
+    font-weight: bold;
+    padding: 7px 15px;
+    background-color: #2b2b2b;
+    color: white;
+    border-radius: 5px;
+    border: black 5px;
+    font-size: 1vw;
+    cursor: pointer;
+    z-index: 1000;
+}
 
-        #backButton:hover {
-            background-color: #3b3b3b;
-        }
+#backButton:hover {
+    background-color: #3b3b3b;
+}
 
-        #backButton:active {
-            background-color: #696969;
-        }
+#backButton:active {
+    background-color: #696969;
+}
 
-        #pointsDisplay {
-            display: none;
-            font-family: Arial;
-            font-size: 1.5vw;
-            color: #333;
-            font-weight: bold;
-            z-index: 1000;
-            user-select: none;
-        }
+#pointsDisplay {
+    display: none;
+    font-family: Arial;
+    font-size: 1.5vw;
+    color: #333;
+    font-weight: bold;
+    z-index: 1000;
+    user-select: none;
+}
     </style>
 </body>
 </html>
