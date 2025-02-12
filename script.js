@@ -12,6 +12,7 @@ const wiad = document.getElementById('wiad');
 const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
+const pointsInput = document.getElementById('pointsInput');
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -150,10 +151,22 @@ function checkAnswer(questionIndex, selectedAnswerText) {
         'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
     ];
 
+    const pointsFeedback = document.getElementById('pointsFeedback');
     if (correctAnswersText[questionIndex] === selectedAnswerText) {
         points++;
+        pointsFeedback.textContent = '+1';
+    } else {
+        pointsFeedback.textContent = '+0';
     }
     pointsDisplay.textContent = `Punkty: ${points}/10`;
+
+    // Zaktualizuj ukryte pole z punktami
+    pointsInput.value = points;
+
+    // Ukryj feedback po 1 sekundzie
+    setTimeout(() => {
+        pointsFeedback.textContent = '';
+    }, 1000);
 }
 
 function createAnswers(options, actions, questionIndex) {
@@ -210,6 +223,13 @@ muteButton.addEventListener('click', function() {
 
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
+
+    // Dodaj punkty do formularza
+    const pointsInput = document.createElement('input');
+    pointsInput.type = 'hidden';
+    pointsInput.name = 'points';
+    pointsInput.value = points;
+    this.appendChild(pointsInput);
 
     let formData = new FormData(this);
 
