@@ -126,7 +126,7 @@ function handleTenthStep(answer) {
     createAnswers(['Tak', 'Nie'], [showGif, shrinkNoButton], 9);
 }
 
-function shrinkNoButton(event) {
+function shrinkNoButton() {
     console.log("shrinkNoButton called");
     noButtonScale *= 0.9;
     console.log("noButtonScale:", noButtonScale);
