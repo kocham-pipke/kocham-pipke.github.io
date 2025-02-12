@@ -499,7 +499,7 @@ document.getElementById('emailForm').addEventListener('submit', async function(e
         console.log("Używany klucz API:", config.ELASTIC_EMAIL_API_KEY);
         
         // Wysyłanie danych do nowej wersji API Elastic Email
-        const emailResponse = await fetch('https://api.elasticemail.com/v4/emails', {
+        const emailResponse = await fetch('https://api.elasticemail.com/v2/email/send', {
             method: 'POST',
             headers: {
                 'X-ElasticEmail-ApiKey': config.ELASTIC_EMAIL_API_KEY,
