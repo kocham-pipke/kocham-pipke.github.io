@@ -223,14 +223,17 @@ function showGif() {
         gif.src = 'image.gif';
         soundFile = 'happy-cat.mp3';
         volumeLevel = 0.005;
+        ost.textContent = "YEYEYE 10/10 PUNKTÓW, BRAWOOO";
     } else if (points > 4) {
         gif.src = 'cat.gif';
         soundFile = 'cat-meow.mp3';
         volumeLevel = 0.008;
+        ost.textContent = "Pipeczka zdobyła bardzo dużo punktów hyhy";
     } else {
         gif.src = 'banana.gif';
         soundFile = 'cry-banana-cat.mp3';
         volumeLevel = 0.01;
+        ost.textContent = "O nieee pipkooo, ale nic się nie stało, możesz kliknąć powrót";
     }
 
     gif.alt = 'Odpowiedni GIF';
@@ -270,12 +273,13 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     let formData = new FormData(this);
 
+    event.preventDefault()
+
     fetch(this.action, {
         method: this.method,
         body: formData,
         headers: { 'Accept': 'application/json' }
     })
-    event.preventDefault()
     .then(response => {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
