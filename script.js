@@ -60,16 +60,16 @@ function nextStep() {
 
 function handleFirstStep(answer) {
     currentStep = 1;
-    questionElement.textContent = "Jakie jest twoje ulubione zwierzę?";
+    questionElement.textContent = "Którego dnia w 2023r. się poznaliśmy?";
     clearAnswers();
-    createAnswers(['Kot', 'Pies', 'Papuga'], [handleSecondStep, handleSecondStep, handleSecondStep], 0);
+    createAnswers(['24.11', '29.11', '26.11'], [handleSecondStep, handleSecondStep, handleSecondStep], 0);
 }
 
 function handleSecondStep(answer) {
     currentStep = 2;
-    questionElement.textContent = "Jaki jest twój ulubiony kolor?";
+    questionElement.textContent = "Ile kotów początkowo mieliśmy mieć";
     clearAnswers();
-    createAnswers(['Niebieski', 'Czerwony', 'Zielony'], [handleThirdStep, handleThirdStep, handleThirdStep], 1);
+    createAnswers(['6', '10', '8'], [handleThirdStep, handleThirdStep, handleThirdStep], 1);
 }
 
 function handleThirdStep(answer) {
@@ -156,7 +156,7 @@ function clearAnswers() {
 
 function checkAnswer(questionIndex, selectedAnswerText) {
     const correctAnswersText = [
-        'Papuga', 'Zielony', 'Kawa', 'Zima', 'Pop',
+        '24.11', '8', 'Kawa', 'Zima', 'Pop',
         'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
     ];
 
