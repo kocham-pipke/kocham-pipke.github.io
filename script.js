@@ -13,9 +13,9 @@ const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
 const pointsInput = document.getElementById('pointsInput');
-const yesNo = document.getElementById('yesNo')
-const pow = document.getElementById('pow')
-const point = document.getElementById('point')
+const yesNoInput = document.getElementById('yesNoInput');
+const pow = document.getElementById('pow');
+const point = document.getElementById('point');
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -148,6 +148,8 @@ function shrinkNoButton() {
         console.log("aggressionLevel:", aggressionLevel);
         questionElement.textContent = aggressiveTexts[aggressionLevel];
     }
+
+    yesNoInput.value = 'Nie';
 }
 
 function clearAnswers() {
@@ -190,10 +192,8 @@ function createAnswers(options, actions, questionIndex) {
             checkAnswer(questionIndex, option);
         };
         if (option === 'Tak') {
-            yesNo.value === 'Tak'
             button.classList.add('answer-yes');
         } else if (option === 'Nie') {
-            yesNo.value ==='Nie'
             button.classList.add('answer-no');
         }
 
@@ -258,35 +258,35 @@ muteButton.addEventListener('click', function() {
     }
 });
 
-document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+const myForm = document.getElementById('myForm');
+const pointsInput = document.getElementById('pointsInput');
+const yesNoInput = document.getElementById('yesNoInput');
+const sendButton = document.getElementById('sendButton');
 
-    const pointsInput = document.createElement('input');
-    pointsInput.type = 'hidden';
-    pointsInput.name = 'points';
-    pointsInput.value = points;
-    this.appendChild(pointsInput);
+// Funkcja do aktualizacji punktów na podstawie odpowiedzi użytkownika
+function updateFormData() {
+    const userAnswer = document.querySelector('input[name="yesNo"]:checked'); // Sprawdzamy, która odpowiedź została wybrana
+    if (userAnswer) {
+        // Zapisujemy odpowiedź "Tak" (1) lub "Nie" (0) w ukrytym polu
+        yesNoInput.value = userAnswer.value;
 
-    const yesNo = document.createElement('yesNo')
-    yesNo.type = 'hidden';
-    yesNo.name = 'yesNo';
-    yesNo.value = yesNo;
-    this.appendChild(yesNo);
-
-    let formData = new FormData(this);
-
-    fetch(this.action, {
-        method: this.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = "https://blaz3j12.github.io";
-            alert("Wiadomość email została wysłana, Kocham cię.")
+        // Oblicz punkty na podstawie odpowiedzi - możesz tu zmieniać logikę punktacji
+        if (userAnswer.value === 'Tak') {
+            pointsInput.value = 10; // np. 10 punktów za "Tak"
         } else {
-            alert("Błąd wysyłania wiadomości.");
+            pointsInput.value = 0;
         }
-    })
-    .catch(error => alert("Błąd: " + error));
+    } else {
+
+        yesNoInput.value = 'Nie wybrano';
+        pointsInput.value = 0; 
+    }}
+const yesNoRadios = document.querySelectorAll('input[name="yesNo"]');
+yesNoRadios.forEach(radio => {
+    radio.addEventListener('change', updateFormData);
+});
+// Nasłuchujemy na kliknięcie przycisku wysyłania formularza
+sendButton.addEventListener('click', function(event) {
+    // Zaktualizowanie formularza przed wysłaniem
+    updateFormData();
 });
