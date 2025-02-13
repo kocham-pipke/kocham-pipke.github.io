@@ -12,8 +12,9 @@ const wiad = document.getElementById('wiad');
 const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
-const pow = document.getElementById('pow');
-const point = document.getElementById('point');
+const pointsInput = document.getElementById('pointsInput');
+const pow = document.getElementById('pow')
+const point = document.getElementById('point')
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -32,7 +33,7 @@ const aggressiveTexts = [
     "JESTEŚ W BŁĘDZIE!"
 ];
 
-function nextStep() {
+function nextStep(answer) {
     if (currentStep === 0) {
         point.style.display = 'inline-block';
         pointsDisplay.style.display = 'inline-block';
@@ -116,7 +117,7 @@ function handleEighthStep(answer) {
 
 function handleNinthStep(answer) {
     currentStep = 9;
-    questionElement.textContent = "Który film lub serial najbardziej ci się podoba?";
+    questionElement.textContent = "Który film lub serial najbardziej ci się?";
     clearAnswers();
     createAnswers(['Matrix', 'Gra o Tron', 'Breaking Bad'], [handleTenthStep, handleTenthStep, handleTenthStep], 8);
 }
@@ -127,6 +128,8 @@ function handleTenthStep(answer) {
     clearAnswers();
     createAnswers(['Tak', 'Nie'], [showGif, shrinkNoButton], 9);
 }
+
+let yesButtonScaleCount = 0;
 
 function shrinkNoButton() {
     console.log("shrinkNoButton called");
@@ -139,6 +142,7 @@ function shrinkNoButton() {
     if (yesButton) {
         console.log("yesButtonScale:", yesButtonScale);
         yesButton.style.transform = `scale(${yesButtonScale})`;
+        yesButtonScaleCount++;
     }
 
     if (aggressionLevel < aggressiveTexts.length - 1) {
@@ -146,8 +150,6 @@ function shrinkNoButton() {
         console.log("aggressionLevel:", aggressionLevel);
         questionElement.textContent = aggressiveTexts[aggressionLevel];
     }
-
-    yesNoInput.value = 'Nie';
 }
 
 function clearAnswers() {
@@ -240,6 +242,7 @@ function showGif() {
 
     const container = document.getElementById('container');
     container.style.height = "50000px";
+    container.style.width = "1000px";
 }
 
 backButton.addEventListener('click', function() {
@@ -256,31 +259,33 @@ muteButton.addEventListener('click', function() {
     }
 });
 
-const myForm = document.getElementById('myForm');
-const pointsInput = document.getElementById('pointsInput');
-const yesNoInput = document.getElementById('yesNoInput');
-const sendButton = document.getElementById('sendButton');
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Zatrzymaj domyślne zachowanie formularza
 
-// Funkcja do aktualizacji punktów na podstawie odpowiedzi użytkownika
-function updateFormData() {
-    const userAnswer = document.querySelector('input[name="yesNo"]:checked'); // Sprawdzamy, która odpowiedź została wybrana
-    if (userAnswer) {
-        // Zapisujemy odpowiedź "Tak" (1) lub "Nie" (0) w ukrytym polu
-        yesNoInput.value = userAnswer.value;
+    // Pobierz wartości punktów i liczby powiększeń przycisku "Tak"
+    const pointsInput = document.getElementById('pointsInput');
+    const yesButtonScaleCountInput = document.getElementById('yesButtonScaleCountInput');
 
-        // Oblicz punkty na podstawie odpowiedzi - możesz tu zmieniać logikę punktacji
-        if (userAnswer.value === 'Tak') {
-            pointsInput.value = 10; // np. 10 punktów za "Tak"
+    // Ustaw wartości pól ukrytych
+    pointsInput.value = points;
+    yesButtonScaleCountInput.value = yesButtonScaleCount;
+
+    // Przygotuj dane formularza
+    let formData = new FormData(this);
+
+    // Wyślij dane za pomocą fetch
+    fetch(this.action, {
+        method: this.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "https://blaz3j12.github.io";
+            alert("Wiadomość email została wysłana, Kocham cię.");
         } else {
-            pointsInput.value = 0;
+            alert("Błąd wysyłania wiadomości.");
         }
-    }
-const yesNoRadios = document.querySelectorAll('input[name="yesNo"]');
-yesNoRadios.forEach(radio => {
-    radio.addEventListener('change', updateFormData);
-});
-// Nasłuchujemy na kliknięcie przycisku wysyłania formularza
-sendButton.addEventListener('click', function(event) {
-    // Zaktualizowanie formularza przed wysłaniem
-    updateFormData();
+    })
+    .catch(error => alert("Błąd: " + error));
 });
