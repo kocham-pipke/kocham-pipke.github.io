@@ -276,11 +276,7 @@ function updateFormData() {
         } else {
             pointsInput.value = 0;
         }
-    } else {
-
-        yesNoInput.value = 'Nie wybrano';
-        pointsInput.value = 0; 
-    }}
+    }
 const yesNoRadios = document.querySelectorAll('input[name="yesNo"]');
 yesNoRadios.forEach(radio => {
     radio.addEventListener('change', updateFormData);
