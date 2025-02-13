@@ -12,7 +12,6 @@ const wiad = document.getElementById('wiad');
 const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
-const pointsInput = document.getElementById('pointsInput');
 const yesNoInput = document.getElementById('yesNoInput');
 const pow = document.getElementById('pow');
 const point = document.getElementById('point');
