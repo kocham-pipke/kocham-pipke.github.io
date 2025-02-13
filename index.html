@@ -4,7 +4,7 @@
     <link rel="icon" href="pobrane1.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miłość</title>
+    <title>Walentynki pipkowe</title>
 </head>
 <body>
     <div id="container" class="container">
@@ -20,13 +20,13 @@
             <h1 id="question">Witam, oto quiz stworzony przez twoja pipke</h1>
             <div class="answers">
                 <button class="answer" onclick="nextStep(1)">Yyy.. dziwne..</button>
-                <button class="answer" onclick="nextStep(2)">ciekawe</button>
+                <button class="answer" onclick="nextStep(2)">Ciekawe..</button>
                 <button class="answer" onclick="nextStep(3)">Sigma Skibidi</button>
             </div>
         </div>
 
         <div>
-            <h2 id="ost">Dziękuję za wybór! Oto kot!</h2>
+            <h2 id="ost">Kocham cię</h2>
         </div>
 
         <div class="gif-container" id="gif-ontainer">
@@ -34,17 +34,17 @@
             <button id="muteButton">Wycisz</button>
         </div>
 
-        <p id="wiad" style="display: none;">Wiadomość:</p>
+        <p id="wiad" style="display: none;">Tu możesz wysłać do mnie wiadomość mycho</p>
 
         <div class="input-container" id="inputContainer">
-    <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
-        <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
-        <input type="hidden" name="points" id="pointsInput" value="0">
-        <input type="hidden" name="noClicked" id="noClicked">
-        <input type="hidden" name="_captcha" value="false">
-        <button id="sendButton" type="submit">Wyślij</button>
-    </form>
-</div>
+            <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
+                <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
+                <input type="hidden" name="points" id="pointsInput" value="0">
+                <input type="hidden" name="noClicked" id="noClicked">
+                <input type="hidden" name="_captcha" value="false">
+                <button id="sendButton" type="submit">Wyślij</button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
@@ -133,6 +133,7 @@ h1 {
 }
 
 #ost {
+    text-align: center;
     display: none;
     font-size: 3vw;
     color: white;
