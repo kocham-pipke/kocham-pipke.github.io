@@ -33,7 +33,7 @@ const aggressiveTexts = [
     "JESTEŚ W BŁĘDZIE!"
 ];
 
-function nextStep(answer) {
+function nextStep() {
     if (currentStep === 0) {
         point.style.display = 'inline-block';
         pointsDisplay.style.display = 'inline-block';
