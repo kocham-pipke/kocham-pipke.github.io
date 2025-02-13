@@ -13,6 +13,7 @@ const ost = document.getElementById('ost');
 const muteButton = document.getElementById('muteButton');
 const sendButton = document.getElementById('sendButton');
 const pointsInput = document.getElementById('pointsInput');
+const yesNo = document.getElementById('yesNo')
 const pow = document.getElementById('pow')
 const point = document.getElementById('point')
 
@@ -124,7 +125,7 @@ function handleNinthStep(answer) {
 
 function handleTenthStep(answer) {
     currentStep = 10;
-    questionElement.textContent = "Wybierz: Tak czy Nie?";
+    questionElement.textContent = "Chcesz zostać moja walentynką?";
     clearAnswers();
     createAnswers(['Tak', 'Nie'], [showGif, shrinkNoButton], 9);
 }
@@ -159,7 +160,6 @@ function checkAnswer(questionIndex, selectedAnswerText) {
         'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
     ];
 
-    // Usuń ewentualne dodatkowe spacje i zmień na małe litery
     const correctAnswer = correctAnswersText[questionIndex].trim().toLowerCase();
     const userAnswer = selectedAnswerText.trim().toLowerCase();
 
@@ -190,8 +190,10 @@ function createAnswers(options, actions, questionIndex) {
             checkAnswer(questionIndex, option);
         };
         if (option === 'Tak') {
+            yesNo.value === 'Tak'
             button.classList.add('answer-yes');
         } else if (option === 'Nie') {
+            yesNo.value ==='Nie'
             button.classList.add('answer-no');
         }
 
@@ -259,12 +261,17 @@ muteButton.addEventListener('click', function() {
 document.getElementById("myForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Dodaj punkty do formularza
     const pointsInput = document.createElement('input');
     pointsInput.type = 'hidden';
     pointsInput.name = 'points';
     pointsInput.value = points;
     this.appendChild(pointsInput);
+
+    const yesNo = document.createElement('yesNo')
+    yesNo.type = 'hidden';
+    yesNo.name = 'yesNo';
+    yesNo.value = yesNo;
+    this.appendChild(yesNo);
 
     let formData = new FormData(this);
 
@@ -276,7 +283,7 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     .then(response => {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
-            alert("Wiadomość email została wysłana.")
+            alert("Wiadomość email została wysłana, Kocham cię.")
         } else {
             alert("Błąd wysyłania wiadomości.");
         }
