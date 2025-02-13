@@ -37,14 +37,14 @@
         <p id="wiad" style="display: none;">Wiadomość:</p>
 
         <div class="input-container" id="inputContainer">
-    <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
-        <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
-        <input type="hidden" name="points" id="pointsInput" value="0">
-        <input type="hidden" name="yesno" id="yesNo" value="0">
-        <input type="hidden" name="_captcha" value="false">
-        <button id="sendButton" type="submit">Wyślij</button>
-    </form>
-</div>
+            <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
+                <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
+                <input type="hidden" name="points" id="pointsInput" value="0">
+                <input type="hidden" name="yesNo" id="yesNoInput" value="0"> <!-- Changed id to yesNoInput -->
+                <input type="hidden" name="_captcha" value="false">
+                <button id="sendButton" type="submit">Wyślij</button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
