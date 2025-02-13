@@ -129,7 +129,7 @@ function handleTenthStep(answer) {
     createAnswers(['Tak', 'Nie'], [showGif, shrinkNoButton], 9);
 }
 
-let yesButtonScaleCount = 0;
+let noClickedcount = 0;
 
 function shrinkNoButton() {
     console.log("shrinkNoButton called");
@@ -142,7 +142,7 @@ function shrinkNoButton() {
     if (yesButton) {
         console.log("yesButtonScale:", yesButtonScale);
         yesButton.style.transform = `scale(${yesButtonScale})`;
-        yesButtonScaleCount++;
+        noClickedcount++;
     }
 
     if (aggressionLevel < aggressiveTexts.length - 1) {
@@ -260,25 +260,22 @@ muteButton.addEventListener('click', function() {
 });
 
 document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Zatrzymaj domyślne zachowanie formularza
+    event.preventDefault();
 
-    // Pobierz wartości punktów i liczby powiększeń przycisku "Tak"
     const pointsInput = document.getElementById('pointsInput');
-    const yesButtonScaleCountInput = document.getElementById('yesButtonScaleCountInput');
+    const noClicked = document.getElementById('noClicked');
 
-    // Ustaw wartości pól ukrytych
     pointsInput.value = points;
-    yesButtonScaleCountInput.value = yesButtonScaleCount;
+    noClicked.value = noClickedcount;
 
-    // Przygotuj dane formularza
     let formData = new FormData(this);
 
-    // Wyślij dane za pomocą fetch
     fetch(this.action, {
         method: this.method,
         body: formData,
         headers: { 'Accept': 'application/json' }
     })
+    event.preventDefault()
     .then(response => {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
