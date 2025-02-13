@@ -214,13 +214,30 @@ function showGif() {
     backButton.style.display = 'inline-block';
     muteButton.style.display = 'inline-block';
 
-    gif.src = 'image.gif';
-    gif.alt = 'Gif kota';
-    catSound.loop = true;
-    catSound.volume = 0.008;
-    catSound.play();
-}
+    let soundFile = '';
 
+    if (points >= 9) {
+        gif.src = 'image.gif';
+        soundFile = 'happy-cat.mp3';
+    } else if (points > 4) {
+        gif.src = 'cat.gif';
+        soundFile = 'cat-meow.mp3';
+    } else {
+        gif.src = 'banana.gif';
+        soundFile = 'cry-banana-cat.mp3';
+    }
+
+    gif.alt = 'Odpowiedni GIF';
+
+    // Odtwarzanie odpowiedniego dźwięku
+    catSound.src = soundFile;
+    catSound.loop = true;
+    catSound.volume = 0.01;
+    catSound.play();
+
+    const container = document.getElementById('container');
+    container.style.height = "50000px";
+}
 
 backButton.addEventListener('click', function() {
     location.reload();
