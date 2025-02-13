@@ -67,16 +67,16 @@ function handleFirstStep(answer) {
 
 function handleSecondStep(answer) {
     currentStep = 2;
-    questionElement.textContent = "Ile kotów początkowo mieliśmy mieć";
+    questionElement.textContent = "Ile kotów początkowo mieliśmy mieć?";
     clearAnswers();
-    createAnswers(['6', '10', '8'], [handleThirdStep, handleThirdStep, handleThirdStep], 1);
+    createAnswers(['6 kotków', '10 kotków', '8 kotków'], [handleThirdStep, handleThirdStep, handleThirdStep], 1);
 }
 
 function handleThirdStep(answer) {
     currentStep = 3;
-    questionElement.textContent = "Wolisz kawę czy herbatę?";
+    questionElement.textContent = "W ilu miastach byliśmy?";
     clearAnswers();
-    createAnswers(['Kawa', 'Herbata', 'Nie piję'], [handleFourthStep, handleFourthStep, handleFourthStep], 2);
+    createAnswers(['W 8 miastach', 'W 5 miastach', 'W 7 miastach'], [handleFourthStep, handleFourthStep, handleFourthStep], 2);
 }
 
 function handleFourthStep(answer) {
@@ -156,7 +156,7 @@ function clearAnswers() {
 
 function checkAnswer(questionIndex, selectedAnswerText) {
     const correctAnswersText = [
-        '24.11', '8', 'Kawa', 'Zima', 'Pop',
+        '24.11', '8 kotków', 'W 8 miastach', 'Zima', 'Pop',
         'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
     ];
 
