@@ -215,24 +215,27 @@ function showGif() {
     muteButton.style.display = 'inline-block';
 
     let soundFile = '';
+    let volumeLevel = 0.008;
 
     if (points >= 9) {
         gif.src = 'image.gif';
         soundFile = 'happy-cat.mp3';
+        volumeLevel = 0.005;
     } else if (points > 4) {
         gif.src = 'cat.gif';
         soundFile = 'cat-meow.mp3';
+        volumeLevel = 0.008;
     } else {
         gif.src = 'banana.gif';
         soundFile = 'cry-banana-cat.mp3';
+        volumeLevel = 0.01;
     }
 
     gif.alt = 'Odpowiedni GIF';
 
-    // Odtwarzanie odpowiedniego dźwięku
     catSound.src = soundFile;
     catSound.loop = true;
-    catSound.volume = 0.01;
+    catSound.volume = volumeLevel;
     catSound.play();
 
     const container = document.getElementById('container');
