@@ -179,7 +179,7 @@ function checkAnswer(questionIndex, selectedAnswerText) {
     pointsInput.value = points;
     setTimeout(() => {
         pointsFeedback.textContent = '';
-    }, 3000);
+    }, 8000);
 }
 
 function createAnswers(options, actions, questionIndex) {
@@ -245,7 +245,9 @@ function showGif() {
 
     const container = document.getElementById('container');
     container.style.height = "50000px";
-    container.style.width = "1000px";
+    container.style.width = "850px";
+    container.style.paddingLeft = "15vw";
+    container.style.paddingRight = "15vw";
 }
 
 backButton.addEventListener('click', function() {
@@ -273,13 +275,12 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     let formData = new FormData(this);
 
-    event.preventDefault()
-
     fetch(this.action, {
         method: this.method,
         body: formData,
         headers: { 'Accept': 'application/json' }
     })
+    event.preventDefault()
     .then(response => {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
