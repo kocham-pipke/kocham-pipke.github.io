@@ -33,13 +33,15 @@ body::before {
     align-items: center;
     width: 80%;
     max-width: 1300px;
-    padding: 45px;
+    padding: 55px;
     border-radius: 10px;
     overflow: hidden;
     z-index: 1;
-    height: 300px;
+    height: 350px;
     background-color: transparent;
     border: 2px solid white;
+    padding-right: 85px;
+    padding-left: 85px;
 }
 
 .container::before {
@@ -60,7 +62,7 @@ h1 {
 }
 
 .answers {
-    margin-top: 10vh;
+    margin-top: -10vh;
     display: flex;
     justify-content: center;
     gap: 2vw;
@@ -70,7 +72,7 @@ h1 {
 #question {
     text-shadow: 0 0 0.3em black;
     text-align: center;
-    font-size: 60px;
+    font-size: 65px;
     color: white;
     margin-top: -1vh;
     user-select: none;
@@ -83,7 +85,7 @@ h1 {
 #ost {
     text-align: center;
     display: none;
-    font-size: 3vw;
+    font-size: 7vw;
     color: white;
     font-weight: bold;
     user-select: none;
@@ -98,7 +100,7 @@ h1 {
     color: white;
     border: 3px solid #214f76;
     cursor: pointer;
-    font-size: 2.5vw;
+    font-size: 5vw;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -115,10 +117,10 @@ h1 {
     background-color: #45a049;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 55%;
-    left: 34%;
+    top: 53%;
+    left: 27%;
     transition: transform 0.2s;
-    border:2px solid #347837;
+    border: 2px solid #347837;
 }
 
 .answer-yes:hover {
@@ -138,8 +140,8 @@ h1 {
     border: 2px solid #ba0000;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 55%;
-    left: 54%;
+    top: 53%;
+    left: 53%;
     transition: transform 0.2s;
 }
 
@@ -166,22 +168,22 @@ h1 {
 
 .gif {
     width: auto;
-    height: 50vh;
+    height: 30vh;
     max-width: 100%;
-    max-height: 50vh;
+    max-height: 40vh;
 }
 
 #muteButton {
     display: none;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 13px;
+    right: -50px;
     padding: 1vw 2vw;
     background-color: #f44336;
     color: white;
     border: 2px solid #ab2e25;
     border-radius: 5px;
-    font-size: 1.2vw;
+    font-size: 4vw;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -198,8 +200,9 @@ h1 {
 #wiad {
     display: none;
     margin-bottom: 1vh;
-    font-size: 4vh;
+    font-size: 2.5vh;
     color: white;
+    text-align: center;
 }
 
 .input-container {
@@ -211,31 +214,33 @@ h1 {
 }
 
 .input-container input {
-    text-align: left;
+    text-align: center;
     display: inline-block;
-    height: 4vw;
-    font-size: 2vw;
-    padding: 0.75vw 1.5vw;
+    height: 20vw;
+    font-size: 5vw;
+    padding: 5.75vw 1.5vw;
     width: 60%;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-right: 10px;
+    margin-right: 68px;
     vertical-align: middle;
     box-sizing: border-box;
+    border-radius: 40px;
 }
 
 #sendButton {
     display: inline-block;
-    padding: 0.5vw 1.5vw;
+    padding-bottom: 60px;
+    padding: 1.5vw 3vw;
     background-color: #4CAF50;
     border: 2px solid #377e3a;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1.8vw;
+    border-radius: 26px;
+    font-size: 8vw;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    height: 3vw;
+    height: 12vw;
     box-sizing: border-box;
     text-align: center;
     white-space: nowrap;
@@ -264,9 +269,9 @@ h1 {
 #pow {
     display: none;
     font-family: Arial;
-    height: 38px;
+    height: 125px;
     font-weight: bold;
-    padding: 10px 60px;
+    padding: 10px 182px;
     color: white;
     border-radius: 5px;
     border: none;
@@ -303,12 +308,12 @@ h1 {
     color: white;
     border-radius: 5px;
     border: none;
-    font-size: 1vw;
+    font-size: 6vw;
     cursor: pointer;
     z-index: 1000;
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 25px;
+    left: 40px;
     overflow: hidden;
     border: 2px solid rgb(78, 78, 78);
 }
@@ -324,16 +329,16 @@ h1 {
 #point {
     display: none;
     font-family: Arial;
-    font-size: 1.5vw;
+    font-size: 4vw;
     color: white;
     font-weight: bold;
     z-index: 1000;
     user-select: none;
     position: fixed;
-    height: 45px;
+    height: 105px;
     top: -2px;
     right: -3px;
-    padding: 10px 130px;
+    padding: 10px 302px;
     background-color: transparent;
     border-radius: 5px;
     overflow: hidden;
@@ -356,7 +361,7 @@ h1 {
 #pointsDisplay {
     display: none;
     font-family: Arial;
-    font-size: 1.5vw;
+    font-size: 6vw;
     text-shadow: 0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     font-weight: bold;
@@ -372,14 +377,14 @@ h1 {
 
 #pointsFeedback {
     color: rgb(0, 172, 0);
-    text-shadow: 0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255),0 0 0.3em rgb(255, 255, 255);
+    text-shadow: 0 0 0.3em rgb(255 255 255), 0 0 0.3em rgb(255 255 255), 0 0 0.3em rgb(255 255 255),0 0 0.3em rgb(255 255 255);
     font-weight: bold;
     display: inline-block;
     margin-right: 10px;
-    font-size: 1.5vw;
+    font-size: 6vw;
     position: fixed;
-    top: 10px;
-    right: 11vw;
+    top: 8px;
+    right: 38vw;
     padding: 7px 15px;
     border-radius: 5px;
     overflow: hidden;
