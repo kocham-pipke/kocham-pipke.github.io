@@ -281,6 +281,29 @@ h1 {
     right: 10px;
 }
 
+.fixed-button-down {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#down {
+    background-color: rgb(88, 166, 50);
+    font-family: Arial;
+    font-weight: bold;
+    padding: 7px 15px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    z-index: 1000;
+    width: 170px;
+    height: 55px;
+    overflow: hidden;
+    border: 2px solid rgb(61, 113, 35);
+}
+
 #pow {
     display: none;
     font-family: Arial;
