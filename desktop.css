@@ -54,6 +54,25 @@ body::before {
     z-index: -1;
 }
 
+#audioC {
+    justify-content: center;
+    gap: 3vw;
+    padding: 20px 40px;
+    font-size: 24px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+input[type="range"] {
+    width: 90%;
+    height: 20px;
+    margin-top: 15px;
+}
+
 h1 {
     font-size: 4vw;
     color: white;
