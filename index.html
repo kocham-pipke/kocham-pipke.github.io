@@ -40,7 +40,7 @@
             <div id="tim" style="display: none;">
                 <input type="range" id="seekBar" value="0" step="1">
             </div>
-
+            
         <div class="gif-container" id="gif-ontainer">
             <img class="gif" src="https://media.giphy.com/media/3o6ZsY8BDA7g7J7csM/giphy.gif" alt="Gif kota" />
             <button id="muteButton">Wycisz</button>
@@ -57,6 +57,11 @@
                 <button id="sendButton" type="submit">Wyślij</button>
             </form>
         </div>
+
+        <div>
+            <button style="display: none;" id="down" class="fixed-button-down" onclick="download()">Pobierz tą wiadomość</button>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
