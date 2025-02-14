@@ -5,6 +5,7 @@ const questionElement = document.getElementById('question');
 const gifcontainer = document.getElementById('gif-ontainer');
 const inputContainer = document.getElementById('inputContainer');
 const catSound = new Audio('happy-cat.mp3');
+const pop = new Audio('pop.mp3');
 const gif = document.querySelector('.gif');
 const backButton = document.getElementById('backButton');
 const pointsDisplay = document.getElementById('pointsDisplay');
@@ -15,6 +16,7 @@ const sendButton = document.getElementById('sendButton');
 const pointsInput = document.getElementById('pointsInput');
 const pow = document.getElementById('pow')
 const point = document.getElementById('point')
+const down = document.getElementById('down')
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -82,44 +84,44 @@ function handleThirdStep(answer) {
 
 function handleFourthStep(answer) {
     currentStep = 4;
-    questionElement.textContent = "Jaką porę roku lubisz najbardziej?";
+    questionElement.textContent = "Co było pierwsze?";
     clearAnswers();
-    createAnswers(['Wiosna', 'Lato', 'Zima'], [handleFifthStep, handleFifthStep, handleFifthStep], 3);
+    createAnswers(['Złapanie się za ręce', 'Pocałunek', 'Wyznanie miłości'], [handleFifthStep, handleFifthStep, handleFifthStep], 3);
 }
 
 function handleFifthStep(answer) {
     currentStep = 5;
-    questionElement.textContent = "Jaki jest twój ulubiony gatunek muzyczny?";
+    questionElement.textContent = "Kiedy pierwszy raz byłem w brodnicy?";
     clearAnswers();
-    createAnswers(['Rock', 'Pop', 'Jazz'], [handleSixthStep, handleSixthStep, handleSixthStep], 4);
+    createAnswers(['09.12', '29.12', 'Ferie 2024'], [handleSixthStep, handleSixthStep, handleSixthStep], 4);
 }
 
 function handleSixthStep(answer) {
     currentStep = 6;
-    questionElement.textContent = "Gdzie chciałbyś pojechać na wakacje?";
+    questionElement.textContent = "Jak długo jesteśmy razem?";
     clearAnswers();
-    createAnswers(['Góry', 'Plaża', 'Miasto'], [handleSeventhStep, handleSeventhStep, handleSeventhStep], 5);
+    createAnswers(['Rok, miesiąc i 21 dni', 'Rok, miesiąc i 18 dni', 'Rok, miesiąc i 16 dni'], [handleSeventhStep, handleSeventhStep, handleSeventhStep], 5);
 }
 
 function handleSeventhStep(answer) {
     currentStep = 7;
-    questionElement.textContent = "Jakie jest twoje ulubione danie?";
+    questionElement.textContent = "Gdzie oznaczyłem cię na zdjeciu na instagramie?";
     clearAnswers();
-    createAnswers(['Pizza', 'Sushi', 'Burger'], [handleEighthStep, handleEighthStep, handleEighthStep], 6);
+    createAnswers(['W Wiśle', 'Na twojej twarzy', 'Na śniegu'], [handleEighthStep, handleEighthStep, handleEighthStep], 6);
 }
 
 function handleEighthStep(answer) {
     currentStep = 8;
-    questionElement.textContent = "Jaki sport uprawiasz najchętniej?";
+    questionElement.textContent = "Pierwsze wspólne zdjęcie?";
     clearAnswers();
-    createAnswers(['Bieganie', 'Pływanie', 'Siłownia'], [handleNinthStep, handleNinthStep, handleNinthStep], 7);
+    createAnswers(['W meblowym', 'Na rynku', 'Na brzegu'], [handleNinthStep, handleNinthStep, handleNinthStep], 7);
 }
 
 function handleNinthStep(answer) {
     currentStep = 9;
-    questionElement.textContent = "Który film lub serial najbardziej ci się?";
+    questionElement.textContent = "Jak bardzo mi się spodobała?";
     clearAnswers();
-    createAnswers(['Matrix', 'Gra o Tron', 'Breaking Bad'], [handleTenthStep, handleTenthStep, handleTenthStep], 8);
+    createAnswers(['Bardzo', 'W ogóle', 'BARDZOASJBIUBEUI'], [handleTenthStep, handleTenthStep, handleTenthStep], 8);
 }
 
 function handleTenthStep(answer) {
@@ -158,8 +160,8 @@ function clearAnswers() {
 
 function checkAnswer(questionIndex, selectedAnswerText) {
     const correctAnswersText = [
-        '24.11', '8 kotków', 'W 8 miastach', 'Zima', 'Pop',
-        'Góry', 'Burger', 'Pływanie', 'Matrix', 'Tak'
+        '24.11', '8 kotków', 'W 8 miastach', 'Wyznanie miłości', '09.12',
+        'Rok, miesiąc i 16 dni', 'W Wiśle', 'W meblowym', 'BARDZOASJBIUBEUI', 'Tak'
     ];
 
     const correctAnswer = correctAnswersText[questionIndex].trim().toLowerCase();
@@ -170,6 +172,7 @@ function checkAnswer(questionIndex, selectedAnswerText) {
         points++;
         console.log(`Correct! Points: ${points}`);
         pointsFeedback.textContent = '+1';
+        playPopSound()
     } else {
         console.log(`Incorrect! Points: ${points}`);
         pointsFeedback.textContent = '+0';
@@ -180,6 +183,17 @@ function checkAnswer(questionIndex, selectedAnswerText) {
     setTimeout(() => {
         pointsFeedback.textContent = '';
     }, 8000);
+}
+
+function playPopSound() {
+    pop.volume = 0.1;
+    pop.play()
+        .then(() => {
+            console.log("Dźwięk pop został odtworzony.");
+        })
+        .catch(error => {
+            console.error("Błąd odtwarzania dźwięku:", error);
+        });
 }
 
 function createAnswers(options, actions, questionIndex) {
@@ -279,9 +293,16 @@ function hideElementsAfterMessage() {
     ost.textContent = "A oto wiadomość moja do ciebie kruszynko";
     wiad.style.display = "none"
     point.style.display = "none"
-    container.style.height = "300px"
-    container.style.width = "70%"
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 426) {
+        container.style.height = "300px"
+        container.style.width = "70%"
+      } else if (screenWidth < 425) {
+        container.style.height = "70px"
+        container.style.width = "70%"
+      }
     showAudioControls()
+    down.style.display = "inline-block"
 }
 
 const audio = document.getElementById("customAudio");
@@ -305,6 +326,18 @@ function pauseAudio() {
 audio.addEventListener("timeupdate", () => {
     seekBar.value = (audio.currentTime / audio.duration) * 100;
 });
+
+function download() {
+    const audioElement = document.getElementById('customAudio');
+    const link = document.createElement('a');
+    link.href = audioElement.src;
+    link.download = 'audio.mp3';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 
 
 document.getElementById("myForm").addEventListener("submit", function(event) {
