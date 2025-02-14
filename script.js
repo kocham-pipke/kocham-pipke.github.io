@@ -17,6 +17,7 @@ const pointsInput = document.getElementById('pointsInput');
 const pow = document.getElementById('pow')
 const point = document.getElementById('point')
 const down = document.getElementById('down')
+const popy = document.getElementById('popy')
 
 let aggressionLevel = 0;
 let noButtonScale = 1;
@@ -173,6 +174,7 @@ function checkAnswer(questionIndex, selectedAnswerText) {
         console.log(`Correct! Points: ${points}`);
         pointsFeedback.textContent = '+1';
         playPopSound()
+
     } else {
         console.log(`Incorrect! Points: ${points}`);
         pointsFeedback.textContent = '+0';
