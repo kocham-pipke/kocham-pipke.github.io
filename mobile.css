@@ -57,6 +57,24 @@ body::before {
     z-index: -1;
 }
 
+#audioC {
+    padding: 15px 10px;
+    font-size: 10px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 15px;
+    border-radius: 12px;
+    width: 100px;
+}
+
+input[type="range"] {
+    width: 90%;
+    height: 20px;
+    margin-top: 15px;
+}
+
 h1 {
     font-size: 4vw;
     color: white;
@@ -118,7 +136,7 @@ h1 {
     background-color: #45a049;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 65%;
+    top: 56%;
     left: 27%;
     transition: transform 0.2s;
     border: 2px solid #347837;
@@ -141,7 +159,7 @@ h1 {
     border: 2px solid #ba0000;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 65%;
+    top: 56%;
     left: 53%;
     transition: transform 0.2s;
 }
@@ -270,6 +288,29 @@ h1 {
     position: fixed;
     top: 10px;
     right: 10px;
+}
+
+.fixed-button-down {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#down {
+    background-color: rgb(88, 166, 50);
+    font-family: Arial;
+    font-weight: bold;
+    padding: 7px 15px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 3vw;
+    cursor: pointer;
+    z-index: 1000;
+    width: 100px;
+    height: 55px;
+    overflow: hidden;
+    border: 2px solid rgb(61, 113, 35);
 }
 
 #pow {
