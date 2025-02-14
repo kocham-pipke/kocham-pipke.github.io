@@ -31,6 +31,16 @@
             <h2 id="ost">Kocham cię</h2>
         </div>
 
+        <audio id="customAudio" src="audio.mp3"></audio>
+
+            <div id="audioControls" style="display: none;">
+                <button id="audioC" onclick="playAudio()">▶ Odtwórz</button>
+                <button id="audioC" onclick="pauseAudio()">⏸ Pauza</button>
+            </div>
+            <div id="tim" style="display: none;">
+                <input type="range" id="seekBar" value="0" step="1">
+            </div>
+
         <div class="gif-container" id="gif-ontainer">
             <img class="gif" src="https://media.giphy.com/media/3o6ZsY8BDA7g7J7csM/giphy.gif" alt="Gif kota" />
             <button id="muteButton">Wycisz</button>
@@ -40,7 +50,7 @@
 
         <div class="input-container" id="inputContainer">
             <form id="myForm" action="https://formsubmit.co/b.kalkowski.2904@gmail.com" method="POST">
-                <input type="text" name="textInput" id="textInput" placeholder="Wiadomość do mnie" required>
+                <input type="text" name="textInput" id="textInput" autocomplete="off" placeholder="Wiadomość do mnie" required>
                 <input type="hidden" name="points" id="pointsInput" value="0">
                 <input type="hidden" name="noClicked" id="noClicked">
                 <input type="hidden" name="_captcha" value="false">
