@@ -285,9 +285,27 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
         if (response.ok) {
             window.location.href = "https://blaz3j12.github.io";
             alert("Wiadomość email została wysłana, Kocham cię.");
-        } else {
-            alert("Błąd wysyłania wiadomości.");
+(function() {
+    const originalLog = console.log;
+    console.log = function(message) {
+        originalLog.apply(console, arguments);
+        if (message === "wiadomość wysłana") {
+            pointsDisplay.style.display =
+            "none"
+            catSound.pause();
+            pow.style.display = "none"
+            gifcontainer.style.display = "none"
+            inputContainer.style.display =
+"none";
+            muteButton.style.display = "none"
+            ost.textContent = "A oto wiadomość moja do ciebie kruszynko" 
         }
+    };
+})();
+        } 
+else {
+       alert("Błąd wysyłania wiadomości.");
+     }
     })
     .catch(error => alert("Błąd: " + error));
 });
