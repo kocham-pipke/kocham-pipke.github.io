@@ -118,7 +118,7 @@ h1 {
     background-color: #45a049;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 59%;
+    top: 65%;
     left: 27%;
     transition: transform 0.2s;
     border: 2px solid #347837;
@@ -141,7 +141,7 @@ h1 {
     border: 2px solid #ba0000;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 59%;
+    top: 65%;
     left: 53%;
     transition: transform 0.2s;
 }
