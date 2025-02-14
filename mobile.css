@@ -32,16 +32,17 @@ body::before {
     justify-content: center;
     align-items: center;
     width: 80%;
-    max-width: 1300px;
-    padding: 55px;
+    max-width: 170px;
+    max-height: 400px;
+    padding: 30vw;
     border-radius: 10px;
     overflow: hidden;
     z-index: 1;
-    height: 350px;
+    height: 2vh;
     background-color: transparent;
     border: 2px solid white;
-    padding-right: 85px;
-    padding-left: 85px;
+    padding-right: 21vw;
+    padding-left: 21vw;
 }
 
 .container::before {
@@ -72,12 +73,12 @@ h1 {
 #question {
     text-shadow: 0 0 0.3em black;
     text-align: center;
-    font-size: 65px;
+    font-size: 25px;
     color: white;
     margin-top: -1vh;
     user-select: none;
     position: relative;
-    top: 20%;
+    top: 10%;
     left: 0%;
     margin-bottom: 15vh;
 }
@@ -85,7 +86,7 @@ h1 {
 #ost {
     text-align: center;
     display: none;
-    font-size: 7vw;
+    font-size: 6vw;
     color: white;
     font-weight: bold;
     user-select: none;
@@ -117,7 +118,7 @@ h1 {
     background-color: #45a049;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 53%;
+    top: 56%;
     left: 27%;
     transition: transform 0.2s;
     border: 2px solid #347837;
@@ -140,7 +141,7 @@ h1 {
     border: 2px solid #ba0000;
     position: fixed;
     padding: 1.5vw 5vw;
-    top: 53%;
+    top: 56%;
     left: 53%;
     transition: transform 0.2s;
 }
@@ -176,7 +177,7 @@ h1 {
 #muteButton {
     display: none;
     position: absolute;
-    top: 13px;
+    top: -18px;
     right: -50px;
     padding: 1vw 2vw;
     background-color: #f44336;
@@ -216,34 +217,39 @@ h1 {
 .input-container input {
     text-align: center;
     display: inline-block;
-    height: 20vw;
-    font-size: 5vw;
-    padding: 5.75vw 1.5vw;
-    width: 60%;
+    height: 13vw;
+    font-size: 4vw;
+    /* padding: -9.25vw 11.5vw; */
+    width: 95%;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-right: 68px;
+    /* margin-right: -35px; */
     vertical-align: middle;
     box-sizing: border-box;
-    border-radius: 40px;
+    border-radius: 20px;
 }
 
 #sendButton {
+    /* justify-content: center; */
+    /* align-items: center; */
     display: inline-block;
+    position: absolute;
     padding-bottom: 60px;
     padding: 1.5vw 3vw;
     background-color: #4CAF50;
     border: 2px solid #377e3a;
     color: white;
     border: none;
-    border-radius: 26px;
-    font-size: 8vw;
+    border-radius: 20px;
+    font-size: 4vw;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     height: 12vw;
     box-sizing: border-box;
     text-align: center;
     white-space: nowrap;
+    top: 93%;
+    left: 38%;
 }
 
 #sendButton:hover {
@@ -269,9 +275,9 @@ h1 {
 #pow {
     display: none;
     font-family: Arial;
-    height: 125px;
+    height: 38px;
     font-weight: bold;
-    padding: 10px 182px;
+    padding: 10px 70px;
     color: white;
     border-radius: 5px;
     border: none;
@@ -312,8 +318,8 @@ h1 {
     cursor: pointer;
     z-index: 1000;
     position: fixed;
-    top: 25px;
-    left: 40px;
+    top: 8px;
+    left: 15px;
     overflow: hidden;
     border: 2px solid rgb(78, 78, 78);
 }
@@ -335,10 +341,10 @@ h1 {
     z-index: 1000;
     user-select: none;
     position: fixed;
-    height: 105px;
+    height: 39px;
     top: -2px;
     right: -3px;
-    padding: 10px 302px;
+    padding: 10px 104px;
     background-color: transparent;
     border-radius: 5px;
     overflow: hidden;
@@ -383,8 +389,8 @@ h1 {
     margin-right: 10px;
     font-size: 6vw;
     position: fixed;
-    top: 8px;
-    right: 38vw;
+    top: 10px;
+    right: 39vw;
     padding: 7px 15px;
     border-radius: 5px;
     overflow: hidden;
