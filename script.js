@@ -244,10 +244,16 @@ function showGif() {
     catSound.play();
 
     const container = document.getElementById('container');
+    const screenWidth = window.innerWidth;
     container.style.height = "50000px";
     container.style.width = "850px";
-    container.style.paddingLeft = "15vw";
-    container.style.paddingRight = "15vw";
+    if (screenWidth > 426) {
+        container.style.paddingLeft = "0";
+        container.style.paddingRight = "0";
+      } else if (screenWidth < 425) {
+        container.style.paddingLeft = "15vw";
+        container.style.paddingRight = "15vw";
+      }
 }
 
 backButton.addEventListener('click', function() {
@@ -264,8 +270,44 @@ muteButton.addEventListener('click', function() {
     }
 });
 
+function hideElementsAfterMessage() {
+    pointsDisplay.style.display = "none";
+    catSound.pause();
+    gifcontainer.style.display = "none";
+    inputContainer.style.display = "none";
+    muteButton.style.display = "none";
+    ost.textContent = "A oto wiadomość moja do ciebie kruszynko";
+    wiad.style.display = "none"
+    point.style.display = "none"
+    container.style.height = "300px"
+    container.style.width = "70%"
+    showAudioControls()
+}
+
+const audio = document.getElementById("customAudio");
+const seekBar = document.getElementById("seekBar");
+const controls = document.getElementById("audioControls");
+const tim = document.getElementById("tim")
+
+function showAudioControls() {
+    controls.style.display = "flex";
+    tim.style.display = "contents";
+}
+
+function playAudio() {
+    audio.play();
+}
+
+function pauseAudio() {
+    audio.pause();
+}
+
+audio.addEventListener("timeupdate", () => {
+    seekBar.value = (audio.currentTime / audio.duration) * 100;
+});
+
+
 document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault();
 
     const pointsInput = document.getElementById('pointsInput');
     const noClicked = document.getElementById('noClicked');
@@ -275,37 +317,21 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
 
     let formData = new FormData(this);
 
+    event.preventDefault()
+
     fetch(this.action, {
         method: this.method,
         body: formData,
         headers: { 'Accept': 'application/json' }
     })
-    event.preventDefault()
     .then(response => {
         if (response.ok) {
-            window.location.href = "https://blaz3j12.github.io";
-            alert("Wiadomość email została wysłana, Kocham cię.");
-(function() {
-    const originalLog = console.log;
-    console.log = function(message) {
-        originalLog.apply(console, arguments);
-        if (message === "wiadomość wysłana") {
-            pointsDisplay.style.display =
-            "none"
-            catSound.pause();
-            pow.style.display = "none"
-            gifcontainer.style.display = "none"
-            inputContainer.style.display =
-"none";
-            muteButton.style.display = "none"
-            ost.textContent = "A oto wiadomość moja do ciebie kruszynko" 
+            console.log("wiadomość wysłana");
+            hideElementsAfterMessage();
         }
-    };
-})();
-        } 
-else {
-       alert("Błąd wysyłania wiadomości.");
-     }
     })
-    .catch(error => alert("Błąd: " + error));
+    .catch(error => {
+        alert("Błąd: " + error);
+        console.error("Błąd wysyłania wiadomości:", error);
+    });
 });
