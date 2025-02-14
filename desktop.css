@@ -287,6 +287,16 @@ h1 {
     right: 20px;
 }
 
+#eloImage {
+    position: fixed;
+    top: 20px;    
+    right: 270px;    
+    width: 100px;   
+    height: auto;    
+    z-index: 1000;  
+    display: none;  
+}
+
 #down {
     background-color: rgb(88, 166, 50);
     font-family: Arial;
